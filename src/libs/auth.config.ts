@@ -81,14 +81,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     })],
 
     // redirect 
-
-  callbacks:{
-    async redirect({baseUrl,url}){
-     return `${baseUrl}`
-    },
-
-  
-  },
+    //  can use callback
  
 //   page sigIn
     pages :{

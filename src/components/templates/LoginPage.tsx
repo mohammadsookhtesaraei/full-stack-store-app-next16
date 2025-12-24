@@ -1,5 +1,12 @@
 "use client";
 
+// next
+
+import { useRouter } from "next/navigation";
+
+
+import { signIn } from "next-auth/react";
+
 // component wrapper container
 import Container from "@/components/container/Container";
 
@@ -20,17 +27,17 @@ const schema = z
   .object({
     email: z.email({ pattern: z.regexes.email }),
     password: z.string().min(6, "at least six characters"),
-    confirmPassword: z.string().min(1, "Please confirm your password"),
   })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "not match password",
-    path: ["confirmPassword"],
-  });
+ 
 
 // formData type
 type FormDataType = z.infer<typeof schema>;
 
-const RegisterPage = () => {
+const LoginPage= () => {
+
+    // router 
+
+    const router=useRouter();
   // form state use reactHook formState
   const {
     register,
@@ -42,28 +49,23 @@ const RegisterPage = () => {
   });
 
   const onSubmit = async (data: FormDataType) => {
-    try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
+   
+      const res = await signIn("credentials",{
+        email:data.email,
+        password:data.password,
+        redirect: false,
       });
 
-      if (!res.ok) {
-        const json = await res.json();
-        toast.error(json.error)
-      } else {
-        const json = await res.json();
-        toast.success(json.message);
+      if(res?.error){
+        toast.error("email or password incorrect")
+        return
+      }else {
+         toast.success("login successfully");
+         setTimeout(()=>{
+            router.push("/")
+         },1000)
       }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message,)
-      }
-
-      throw error;
     }
-  };
 
   return (
     <div>
@@ -76,7 +78,7 @@ const RegisterPage = () => {
             <fieldset disabled={isSubmitting} className="w-6/12">
               {/* title */}
               <h1 className="font-bold text-3xl text-center mb-8 capitalize text-gray-600/75">
-                register Form
+                login Form
               </h1>
 
               {/* email */}
@@ -125,33 +127,7 @@ const RegisterPage = () => {
                 <p className="h-9 text-red-500 flex items-start pl-2">
                   {errors?.password && <span>{errors.password?.message}</span>}
                 </p>
-              </div>
-
-              {/* confirmPassword */}
-              <div className="flex flex-col mb-1.5">
-                <label
-                  className="mb-2 capitalize text-gray-500"
-                  htmlFor="confirmPassword"
-                >
-                  confirmPassword
-                </label>
-                <input
-                  className={
-                    errors.confirmPassword
-                      ? "border border-red-400 text-red-400 ps-4 py-1 border-dashed focus:outline-none focus:border-solid focus:border-red-400 focus:text-red-400 rounded"
-                      : "border border-gray-400 text-gray-400 ps-4 py-1 border-dashed focus:outline-none focus:border-solid focus:border-blue-400 focus:text-blue-400 rounded"
-                  }
-                  type="confirmPassword"
-                  placeholder="confirmPassword"
-                  id="confirmPassword"
-                  {...register("confirmPassword")}
-                />
-                <p className="h-9 text-red-500 flex items-start pl-2">
-                  {errors?.confirmPassword && (
-                    <span>{errors.confirmPassword?.message}</span>
-                  )}
-                </p>
-              </div>
+              </div>     
               <button
                 className="bg-slate-900 w-full py-1 rounded-md text-white hover:scale-105 active:scale-95 transition-transform duration-200 ease-in-out cursor-pointer"
                 type="submit"
@@ -167,4 +143,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
