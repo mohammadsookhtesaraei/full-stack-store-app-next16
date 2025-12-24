@@ -1,9 +1,18 @@
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
-
-const Layout = () => {
-  return (
-    <div>Layout</div>
-  )
+interface LayoutProps {
+  children: React.ReactNode;
 }
 
-export default Layout
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <>
+      <Header />
+      <main className="min-h-dvh">{children}</main>
+      <Footer />
+    </>
+  );
+};
+
+export default Layout;
