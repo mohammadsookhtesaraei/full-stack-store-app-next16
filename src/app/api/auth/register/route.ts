@@ -18,13 +18,13 @@ export async function POST(request: NextRequest) {
 
         // validation Data
         if (!email || !password) {
-            return NextResponse.json({ message: "invalid Data!" }, { status: 422 })
+            return NextResponse.json({ error: "invalid Data!" }, { status: 422 })
         };
         
         // check email in dataBase
         const isExitingUser = await User.findOne({ email });
         if (isExitingUser) {
-            return NextResponse.json({ message: "before use this email" }, { status: 422 })
+            return NextResponse.json({ error: "before use this email try new email or login" }, { status: 422 })
         };
         
 
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     } catch (error: unknown) {
         if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 })
+            return NextResponse.json({ message: error.message }, { status: 500 })
         }
 
         return NextResponse.json({ message: "server error 500" }, { status: 500 })

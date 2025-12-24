@@ -41,7 +41,7 @@ const Header = () => {
             <div className="flex items-start gap-x-3">
               <Link
                 className="bg-green-500 hover:bg-green-600 px-8 py-1 rounded-md text-white transition-all duration-150 ease-in-out"
-                href={"/signup"}
+                href={"/register"}
               >
                 Sign Up
               </Link>
