@@ -1,4 +1,5 @@
 import Container from "@/components/container/Container";
+import CardProducts from "@/components/elements/CardProducts";
 import { ProductsType } from "@/types/products.type";
 
 interface ProductsIdProps {
@@ -18,8 +19,8 @@ const ProductsId = async({params}:ProductsIdProps) => {
   return (
     <div>
         <Container>
-            <div className="m-5">
-               
+            <div className="m-5 border p-4 grid place-content-center border-gray-400/35 rounded-md w-8/12 mx-auto">
+               <CardProducts {...product}/>
             </div>
         </Container>
     </div>
