@@ -9,7 +9,8 @@ interface LinkT {
 const linkData:LinkT[]=[
     {name:"Home",href:"/"},
     {name:"Store",href:"/products"},
-    {name:"Cart",href:"/cart"}
+    {name:"Cart",href:"/cart"},
+    {name:"dashboard",href:"/dashboard"}
 ];
 
 
