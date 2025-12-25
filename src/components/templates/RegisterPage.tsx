@@ -1,4 +1,8 @@
 "use client";
+// next 
+
+import {useRouter}from "next/navigation"
+
 
 // component wrapper container
 import Container from "@/components/container/Container";
@@ -31,6 +35,9 @@ const schema = z
 type FormDataType = z.infer<typeof schema>;
 
 const RegisterPage = () => {
+
+  const router=useRouter();
+
   // form state use reactHook formState
   const {
     register,
@@ -55,6 +62,9 @@ const RegisterPage = () => {
       } else {
         const json = await res.json();
         toast.success(json.message);
+        setTimeout(()=>{
+         router.push("/login"); 
+        },1000)
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
