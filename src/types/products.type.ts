@@ -8,3 +8,8 @@ export interface ProductsType {
     description: string;
     category: string;
 }
+
+
+export interface CartT extends ProductsType {
+    quantity:number;
+}
