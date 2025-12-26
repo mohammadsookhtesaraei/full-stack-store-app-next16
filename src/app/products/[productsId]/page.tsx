@@ -20,7 +20,7 @@ const ProductsId = async({params}:ProductsIdProps) => {
     <div>
         <Container>
             <div className="m-5 border p-4 grid place-content-center border-gray-400/35 rounded-md w-8/12 mx-auto">
-               <CardProducts {...product}/>
+               <CardProducts products={product}/>
             </div>
         </Container>
     </div>

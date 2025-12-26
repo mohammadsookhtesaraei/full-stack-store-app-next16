@@ -2,7 +2,7 @@ import ProductsPage from "@/components/templates/ProductsPage";
 import { ProductsType } from "@/types/products.type";
 
 interface ProductsProps {
-  searchParams: Promise<{ category: string }>;
+  searchParams: Promise<{ category?: string }>;
 }
 
 const Products = async ({ searchParams }: ProductsProps) => {

@@ -39,7 +39,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
     // state cart
   const [cart, setCart] = useState<CartT[]>([]);
-  console.log(cart);
+
 // get local storage mounting render
   useEffect(()=>{
   const sorted=localStorage.getItem("cart");
@@ -57,7 +57,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
 //   add to cart and plus
   const increaseToCart = (product: ProductsType) => {
-    setCart((prev) => {
+    setCart((prev:CartT[]) => {
       const selectedProduct = prev.find((item) => item._id == product._id);
       if (!selectedProduct) {
         return [...prev, { ...product, quantity: 1 }];
@@ -76,7 +76,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
 //  decrease cart  
   const decreaseToCart = (product: ProductsType) => {
-    setCart((prev) => {
+    setCart((prev:CartT[]) => {
       const isLastOne =
         prev.find((item) => item._id == product._id)?.quantity == 1;
 
@@ -97,7 +97,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 //   remove from cart
 
   const removeFromCart = (productId: string) => {
-    setCart((prev) => {
+    setCart((prev:CartT[]) => {
       return prev.filter((product) => product._id !== productId);
     });
   };

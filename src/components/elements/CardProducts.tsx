@@ -8,7 +8,7 @@ interface CardProductsProps {
 
 const CardProducts = ({products}:CardProductsProps) => {
 
-  const {_id,title,price,category,description,image}=products;
+  const {_id,title,price,category,description,image}=products as ProductsType;
 
    
   return (
