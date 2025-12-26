@@ -39,7 +39,7 @@ const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
     // state cart
   const [cart, setCart] = useState<CartT[]>([]);
- 
+  console.log(cart);
 // get local storage mounting render
   useEffect(()=>{
   const sorted=localStorage.getItem("cart");

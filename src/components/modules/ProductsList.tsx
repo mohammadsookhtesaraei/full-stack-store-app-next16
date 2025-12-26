@@ -14,7 +14,7 @@ const ProductsList = ({products}:ProductsListProps) => {
         <Container>
             <div className="p-4 flex gap-x-1.5 justify-center">
                {products.map((item)=>(
-                <CardProducts key={item._id} {...item}/>
+                <CardProducts key={item._id} products={item}/>
                ))}
             </div>
         </Container>

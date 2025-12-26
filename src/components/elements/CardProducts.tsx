@@ -1,7 +1,14 @@
+import AddtoCart from "@/components/elements/AddtoCart";
 import { ProductsType } from "@/types/products.type"
 import Link from "next/link";
 
-const CardProducts = ({_id,title,price,category,description,image}:ProductsType) => {
+interface CardProductsProps {
+  products:ProductsType
+}
+
+const CardProducts = ({products}:CardProductsProps) => {
+
+  const {_id,title,price,category,description,image}=products;
 
    
   return (
@@ -23,7 +30,7 @@ const CardProducts = ({_id,title,price,category,description,image}:ProductsType)
 
        <div className="flex justify-between  w-full p-2">
            <Link className="bg-blue-400 text-sm text-white px-1.5 py-1 inline-block rounded-md hover:bg-blue-500" href={`/products/${_id}`}>more details</Link>
-          <button className="bg-blue-400 text-sm text-white px-1.5 py-1 inline-block rounded-md hover:bg-blue-500">add to cart</button>
+          <AddtoCart  product={products}/>
       </div>
     </div>
   )
