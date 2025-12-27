@@ -17,7 +17,7 @@ const Cart = () => {
               {cart.length === 0 ? (<p>cart empty</p>) : (
                 <div className="flex items-start gap-x-1.5 mx-auto">
                  <CartList cart={cart}/>
-                 <CartForm/>
+                 <CartForm cart={cart} totalP={totalPrice}/>
                 </div>
               )}
                  <p className="mt-5 text-gray-400">totalPrice:{totalPrice}$</p>

@@ -4,6 +4,10 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+// context
+
+import { useCart } from "@/context/CartContextProvider";
+
 // linkData from constant folder
 import { linkData } from "@/constant/link";
 
@@ -12,6 +16,7 @@ import Container from "@/components/container/Container";
 
 const Header = () => {
   const pathName = usePathname();
+  const {getAllProducts}=useCart()
   return (
     <div className="bg-slate-800 p-5">
       <Container>
@@ -71,7 +76,9 @@ const Header = () => {
                   />
                 </svg>
 
-                <span  className="text-gray-400">0</span>
+                <span  className="text-gray-400">
+                  {getAllProducts}
+                </span>
               </Link>
             </div>
           </div>
