@@ -19,7 +19,7 @@ const CardCart = ({product}:CardCartProps) => {
         image
       </div>
 
-      <div className="p-2 flex items-start  flex-col gap-y-1.5 border border-gray-300/35">
+      <div className="p-2 flex items-start  flex-col gap-y-1.5  border border-gray-300/35">
         <h2 className="text-gray-400">name:<span className="text-gray-600 font-medium  text-base">{title}</span></h2>
         <p className="text-gray-400">price:<span className="text-gray-600 font-medium  text-base">{price}$</span></p>
         <p className="text-gray-400">category:

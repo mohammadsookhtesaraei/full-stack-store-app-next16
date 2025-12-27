@@ -8,6 +8,7 @@ import { useCart } from "@/context/CartContextProvider"
 const Cart = () => {
     const {cart}=useCart();
 
+  const totalPrice=cart.reduce((total,current)=>total + current.price,0);
 
   return (
     <div>
@@ -19,6 +20,8 @@ const Cart = () => {
                  <CartForm/>
                 </div>
               )}
+                 <p className="mt-5 text-gray-400">totalPrice:{totalPrice}$</p>
+              
             </div>
         </Container>
     </div>

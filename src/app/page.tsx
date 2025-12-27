@@ -12,7 +12,7 @@ const Home = async ({ searchParams }: HomeProps) => {
     ? `http://localhost:3000/api/products?category=${category}`
     : "http://localhost:3000/api/products";
 
-  const response = await fetch(url, { cache: "no-store" });
+  const response = await fetch(url, { cache: "force-cache" });
   const products = (await response.json()) as ProductsType[];
 
   return <HomePage products={products} />;
